@@ -1,0 +1,18 @@
+{
+    "Auditorium":[
+        [
+            {"seat_code":"A1","status":1},
+            {"seat_code":"A2","status":0},
+            {"seat_code":"A3","status":0},
+            {"seat_code":"A4","status":0},
+            {"seat_code":"A5","status":1}
+        ],
+        [
+            {"seat_code":"B1","status":1},
+            {"seat_code":"B2","status":0},
+            {"seat_code":"B3","status":0},
+            {"seat_code":"B4","status":0},
+            {"seat_code":"B5","status":1}
+        ]
+    ]
+}

@@ -1,0 +1,76 @@
+
+<?php $__env->startSection('content'); ?>
+<form role="form" method="post" action="<?php echo e(url($path)); ?>/update" enctype="multipart/form-data">
+  <div class="portlet light bordered">
+    <div class="portlet-title">
+        <div class="caption font-green">
+          <i class="icon-layers font-green title-icon"></i>
+          <span class="caption-subject bold uppercase"> <?php echo e($title); ?></span>
+        </div>
+        <div class="actions">
+          <div class="actions">
+            <?php echo view($view_path.'.builder.button',['type' => 'submit','label' => trans('general.submit')]); ?>
+
+          </div>
+        </div>
+    </div>
+    <div class="portlet-body form">
+      <?php echo $__env->make('admin.includes.errors', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+      <div class="tabbable-line">
+        <ul class="nav nav-tabs ">
+          <li class="active">
+            <a href="#settings" data-toggle="tab" aria-expanded="true"><?php echo e(trans('general.web-settings')); ?></a>
+          </li> 
+          <li>
+            <a href="#mobile_config" data-toggle="tab" aria-expanded="true">Mobile Config</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="settings">
+            <div class="row">
+                <?php echo view($view_path.'.builder.text',['type' => 'email','name' => 'web_email','label' => 'Global Email','value' => (old('web_email') ? old('web_email') : $configs->web_email),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'web_name','label' => 'Web Name','value' => (old('web_name') ? old('web_name') : $configs->web_name),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.file',['name' => 'favicon','label' => 'Favicon','value' => $configs->favicon,'type' => 'file','file_opt' => ['path' => $image_path],'upload_type' => 'single-image','class' => 'col-md-6','note' => 'Note: File Must jpeg,png,jpg,gif | Best Resolution: 30 x 30 px','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.file',['name' => 'web_logo','label' => 'Web Logo','value' => $configs->web_logo,'type' => 'file','file_opt' => ['path' => $image_path],'upload_type' => 'single-image','class' => 'col-md-6','note' => 'Note: File Must jpeg,png,jpg,gif | Best Resolution: 138 x 44 px','form_class' => 'col-md-6']); ?>
+
+              </div>
+          </div>
+
+          <div class="tab-pane" id="mobile_config">
+            <div class="row">
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'whatsapp','label' => 'WhatsApp','value' => (old('whatsapp') ? old('whatsapp') : $configs->whatsapp),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'phone','label' => 'Phone','value' => (old('phone') ? old('phone') : $configs->phone),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'instagram','label' => 'Instagram','value' => (old('instagram') ? old('instagram') : $configs->instagram),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'youtube','label' => 'Youtube','value' => (old('youtube') ? old('youtube') : $configs->youtube),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'web_url','label' => 'Web URL','value' => (old('web_url') ? old('web_url') : $configs->web_url),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'terms_condition_url','label' => 'Terms Condition URL','value' => (old('terms_condition_url') ? old('terms_condition_url') : $configs->terms_condition_url),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+                <?php echo view($view_path.'.builder.text',['type' => 'text','name' => 'privacy_policy_url','label' => 'Privacy Policy URL','value' => (old('privacy_policy_url') ? old('privacy_policy_url') : $configs->privacy_policy_url),'attribute' => 'required','form_class' => 'col-md-6']); ?>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<?php $__env->startPush('custom_scripts'); ?>
+  <?php if($role->view == 'n'): ?>
+    <script>
+      $(document).ready(function(){
+        // $('input,select,textarea').prop('disabled',true);
+      });
+    </script>
+  <?php endif; ?>
+<?php $__env->stopPush(); ?>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make($view_path.'.layouts.master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
